@@ -6,11 +6,21 @@ window.onload = function () {
     ctx = canvas.getContext("2d");
     canvas.width = 204;
     canvas.height = 200;
+    var score = 0;
+    var level = 0;
     var body = document.getElementsByTagName('body')[0];
     body.appendChild(canvas);
+    function drawInitial() {
+        canvas.lineWidth = 2;//2 Pixel Bordeer Width
+        canvas.strokeStyle = "black";//Black Color
+        ctx.strokeRect(2, 20, canvas.width - 4, canvas.height - 24);
 
-    canvas.lineWidth = 2;//2 Pixel Bordeer Width
-    canvas.strokeStyle = "black";//Black Color
-    ctx.strokeRect(2, 20, canvas.width - 4, canvas.height - 24);
+        ctx.font = "12px sans-serif";
+        ctx.fillText('SCORE:' + score + 'LEVEL:' + level,2,12)
+
+
+    }
+    drawInitial();
+
 
 }
