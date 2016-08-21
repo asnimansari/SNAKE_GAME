@@ -25,6 +25,17 @@ window.onload = function () {
     for(var i = 0;i<map.length;i++){
         map[i] = new Array(20);
     }
+    function foodMaker() {
+        var rndX = Math.round(Math.random() * 19),
+            rndY = Math.round(Math.random() * 19);
+        while(map[rndX][rndY] === 2){
+            rndX = Math.round(Math.random() * 19);
+            rndY = Math.round(Math.random() * 19);
+        }
+        map[rndX][rndY] = 1;
+        return map;
+
+    }
 
 
 
