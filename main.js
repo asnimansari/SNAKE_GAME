@@ -21,6 +21,11 @@ window.onload = function () {
 
     }
     drawInitial();
+    var map = new Array(20);
+    for(var i = 0;i<map.length;i++){
+        map[i] = new Array(20);
+    }
+
 
 
 }
