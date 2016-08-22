@@ -6,7 +6,9 @@ window.onload = function () {
         ctx = canvas.getContext("2d"),
         score = 0,
         level  = 0,
-        direction = 0;
+        direction = 0,
+        snake = new Array(3);
+
     canvas.width = 204;
     canvas.height = 200;
     var body = document.getElementsByTagName('body')[0];
@@ -16,6 +18,7 @@ window.onload = function () {
         console.log("GENERATED MAP");
         map[i] = new Array(20);
     }
+    map = generateSnake(map);
     map = generateFood(map);
     drawGame();
     function drawGame() {
