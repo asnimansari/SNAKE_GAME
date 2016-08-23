@@ -15,3 +15,20 @@ var SnakeDirections = {
     LEFT : 3,
     RIGHT : 1
 }
+score = 0;
+document.addEventListener("keydown",function(e){
+    var keyCode = e.keyCode;
+    console.log(keyCode);
+    if(keyCode === 39 && direction != SnakeDirections.LEFT){
+        direction = SnakeDirections.RIGHT;
+    }
+    if(keyCode === 40 && direction != SnakeDirections.UP){
+        direction = SnakeDirections.DOWN;
+    }
+    if(keyCode === 37 && direction != SnakeDirections.RIGHT){
+        direction = SnakeDirections.LEFT;
+    }
+    if(keyCode === 38 && direction != SnakeDirections.DOWN){
+        direction = SnakeDirections.UP;
+    }
+});
