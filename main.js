@@ -11,6 +11,7 @@ window.onload = function ()
     var var_level_0 = [];
     var direction = 1;
     var rndX = 0, rndY = 0;
+    var fence = new Array(8);
     var SnakeDirections = {
         UP: 4,
         DOWN: 2,
@@ -56,10 +57,10 @@ window.onload = function ()
             }
         }
         ctx.fillRect(rndX, rndY, 19, 19);
-        // snake.shift();
+        snake.shift();
         ctx.font = "20px sans-serif";
         ctx.fillText("SCORE :" + score, 10, 90);
-        // snakeshift();
+        snakeshift();
         // fencemaker();
 
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
@@ -73,4 +74,30 @@ window.onload = function ()
     }
 
     setInterval(animate, 10);
+    function snakeshift(){
+        last_pos = snake[snake.length - 1];
+        switch(direction){
+            case 1:
+                // direction = SnakeDirections.RIGHT;
+                snake.push({x:last_pos.x + 20,y:last_pos.y});
+
+                break;
+            case 2:
+                // direction = SnakeDirections.DOWN;
+                console.log("DOWN");
+                snake.push({x:last_pos.x,y:last_pos.y + 20});
+
+                break;
+            case 3:
+                // direction = SnakeDirections.LEFT;
+                snake.push({x:last_pos.x - 20,y:last_pos.y});
+
+                break;
+            case 4:
+                // direction = SnakeDirections.UP;
+                snake.push({x:last_pos.x,y:last_pos.y - 20});
+                break;
+        }
+        // foodMaker();
+    }
 }
