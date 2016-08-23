@@ -35,6 +35,7 @@ window.onload = function ()
             direction = SnakeDirections.UP;
         }
     });
+    foodMaker();
     function animate() {
 
         ctx.clearRect(0, 0, 959, 639);
@@ -66,9 +67,9 @@ window.onload = function ()
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
         if (snake_head.x === rndX && snake_head.y === rndY) {
             console.log("Passed Food");
-            // snakeshift();
+            snakeshift();
             score = score + 1;
-            // foodMaker();
+            foodMaker();
         }
 
     }
@@ -78,26 +79,27 @@ window.onload = function ()
         last_pos = snake[snake.length - 1];
         switch(direction){
             case 1:
-                // direction = SnakeDirections.RIGHT;
                 snake.push({x:last_pos.x + 20,y:last_pos.y});
-
                 break;
             case 2:
-                // direction = SnakeDirections.DOWN;
-                console.log("DOWN");
                 snake.push({x:last_pos.x,y:last_pos.y + 20});
-
                 break;
             case 3:
-                // direction = SnakeDirections.LEFT;
                 snake.push({x:last_pos.x - 20,y:last_pos.y});
-
                 break;
             case 4:
-                // direction = SnakeDirections.UP;
                 snake.push({x:last_pos.x,y:last_pos.y - 20});
                 break;
         }
-        // foodMaker();
+    }
+    function foodMaker(){
+        rndX = Math.round(Math.random() * 38)*20,
+            rndY = Math.round(Math.random() * 38)*20;
+        console.log(rndX,rndY);
+        while(rndX > 940 || rndY > 620){
+            rndX = Math.round(Math.random() * 38)*20,
+                rndY = Math.round(Math.random() * 38)*20;
+
+        }
     }
 }
