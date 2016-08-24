@@ -5,7 +5,7 @@ window.onload = function ()
 {
     var canvas = document.getElementById("snakecanvas");
     var ctx = canvas.getContext("2d");
-    var snake = [{x: 40 + 500, y: 100}, {x: 60 + 500, y: 100}, {x: 80 + 500, y: 100}, {x: 100 + 500, y: 100}];
+    var snake = [{x: 40, y: 100}, {x: 60, y: 100}, {x: 80, y: 100}, {x: 100, y: 100}];
     var var_level_0 = [];
     var direction = 1;
     var rndX = 0, rndY = 0;
@@ -14,9 +14,12 @@ window.onload = function ()
     for(var i = 0;i< 48;i++){
         fence.push({x:i*20,y:0},{x:i*20,y:620});
     }
+
+
     for(var i = 1;i< 31;i++){
         fence.push({y:i*20,x:0},{y:i*20,x:940});
     }
+
 
     var SnakeDirections = {
         UP: 4,
@@ -65,7 +68,7 @@ window.onload = function ()
         ctx.font = "20px sans-serif";
         ctx.fillText("SCORE :" + score, 10, 90);
         snakeshift();
-        // fencemaker();
+
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
         if (snake_head.x === rndX && snake_head.y === rndY) {
             console.log("Passed Food");
@@ -73,12 +76,26 @@ window.onload = function ()
             score = score + 1;
             foodMaker();
         }
+
+
         for(var i = 0;i<snake.length - 2;i++){
             if (snake_head.x === snake[i].x && snake_head.y === snake[i].y){
                 console.log("HIT");
                 clearInterval(interval_id);
             }
         }
+        for(var i = 0;i< fence.length;i++){
+            if (snake_head.x === fence[i].x && snake_head.y === fence[i].y){
+                console.log("HIT");
+                clearInterval(interval_id);
+            }
+        }
+
+
+
+
+
+
         for (var i =0;i<fence.length;i++){
             ctx.fillRect(fence[i].x,fence[i].y,19,19);
         }
