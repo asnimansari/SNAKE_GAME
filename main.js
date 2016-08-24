@@ -28,16 +28,16 @@ window.onload = function ()
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
         console.log(keyCode);
-        if (keyCode === 39 && direction != SnakeDirections.LEFT) {
+        if ((keyCode === 39 || keyCode === 68) && direction != SnakeDirections.LEFT) {
             direction = SnakeDirections.RIGHT;
         }
-        if (keyCode === 40 && direction != SnakeDirections.UP) {
+        if ((keyCode === 40 || keyCode === 83) && direction != SnakeDirections.UP) {
             direction = SnakeDirections.DOWN;
         }
-        if (keyCode === 37 && direction != SnakeDirections.RIGHT) {
+        if ((keyCode === 37 || keyCode === 65)&& direction != SnakeDirections.RIGHT) {
             direction = SnakeDirections.LEFT;
         }
-        if (keyCode === 38 && direction != SnakeDirections.DOWN) {
+        if ((keyCode === 38 || keyCode === 87) && direction != SnakeDirections.DOWN) {
             direction = SnakeDirections.UP;
         }
     });
@@ -105,7 +105,7 @@ window.onload = function ()
         rndX = Math.round(Math.random() * 38)*20,
             rndY = Math.round(Math.random() * 38)*20;
         console.log(rndX,rndY);
-        while(rndX > 940 || rndY > 620 || fence.indexOf({x:rndX,y:rndY} <0)){
+        while(rndX > 940 || rndY > 620){
             rndX = Math.round(Math.random() * 38)*20;
             rndY = Math.round(Math.random() * 38)*20;
         }
