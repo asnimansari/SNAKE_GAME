@@ -9,124 +9,115 @@ window.onload = function ()
     var var_level_0 = [];
     var direction = 1;
     var rndX = 0, rndY = 0;
-    // var fence = new Array(8);
-    var fence = [];
+    var GAME_LEVEL = 0;
+    var fence = new Array(8);
+    for(i = 0;i<fence.length;i++){
+        fence[i] = new Array();
+    }
+    fence[0] = [];
+    // SIMPLE FENCE 1
+    for(var i = 0;i< 48;i++){
+        fence[1].push({x:i*20,y:0},{x:i*20,y:620});
+    }
+    for(var i = 1;i< 31;i++){
+        fence[1].push({y:i*20,x:0},{y:i*20,x:940});
+    }
+    //LEVEL 2 FENCE
+    for(var i = 0;i<7;i++){
+        fence[2].push({x:i*20,y:0},{x:940 - i*20,y:0},
+            {x:i*20,y:620},{x:940 - i*20,y:620},
+            {x:0,y:i*20},{x:0,y:620 - i*20},
+            {x:940,y:i*20},{x:940,y:620 - i *20}
+        )
+    }
+    shift_X = 220;
+    shift_Y = 200;
+    for(var i = 0;i<25;i++){
+        fence[2].push({x:i*20 + shift_X,y:shift_Y},
+            {x:i*20 +shift_X,y:620 - shift_Y}
+
+        )
+    }
+    console.log(fence);
+    // LEVEL 3  FENCE
+    var level_3_shiftX = 300;
+    var level_3_shiftY = 100;
+    for(var i = 0;i<20;i++){
+        fence[3].push({x:level_3_shiftX,y:620-i*20},{x:940-level_3_shiftX,y:i*20});
+    }
+    for(var i = 0;i<20;i++){
+        fence[3].push({x:i*20,y:level_3_shiftY},{x:940-i*20,y:620-level_3_shiftY});
+    }
+    //LEVEL 4 FENCE
+    for(i = 0;i<48;i++){
+        fence[4].push({x:i*20,y:0},{x:i*20,y:620})
+    }
+    for(i = 0;i<48;i++){
+        fence[4].push({x:i*20,y:0},{x:i*20,y:620})
+    }
+    for(i = 0;i<10;i++){
+        fence[4].push({x:0,y:i*20},{x:940,y:i*20},
+            {x:0,y:620-i*20},{x:940,y:620-i*20}
+        )
+    }
+    shift_X = 300;
+    shift_Y = 100;
+    for(var i = 0;i<20;i++){
+        fence[4].push({x:+ shift_X,y:shift_Y + i*20},
+            {x:940 - shift_X,y:shift_Y +i*20}
+
+
+
+        )
+    }
+    //
+    // LEVEL 5 FENCE
+    // HORIZONTALS
+    for(var i =0;i<10;i++){
+        fence[5].push({x:i*20,y:0});
+    }
+    for(var i =16;i<35;i++){
+        fence[5].push({x:i*20,y:0});
+    }
+
+    for(var i =0;i<26;i++){
+        fence[5].push({x:i*20,y:260});
+    }
+    for(var i =34;i<48;i++){
+        fence[5].push({x:i*20,y:260});
+    }
+    for(var i =0;i<48;i++){
+        fence[5].push({x:i*20,y:460});
+    }
+
+    //VERTICALS
+    for(var i =1;i<=8;i++){
+        fence[5].push({x:0,y:i*20});
+    }
+    for(var i =1;i<=12;i++){
+        fence[5].push({x:500,y:i*20});
+    }
+    for(var i =1;i<=12;i++){
+        fence[5].push({x:700,y:460+i*20});
+    }
+
     //LEVEL 6 FENCE
     for(var i=0;i<48;i++){
-        fence.push({x:i*20,y:420})
+        fence[6].push({x:i*20,y:320})
+    }
+    for(var i=0;i<48;i++){
+        fence[6].push({x:460,y:i*20})
+    }
+
+
+    //LEVEL 7 FENCE
+    for(var i=0;i<48;i++){
+        fence[7].push({x:i*20,y:420})
     }
     for(var i = 0;i<11;i++){
-        fence.push({x:240,y:420+i*20},{x:740,y:420+i*20})
+        fence[7].push({x:240,y:420+i*20},{x:740,y:420+i*20})
     }
 
-
-    //LEVEL 5 FENCE
-    // for(var i=0;i<48;i++){
-    //     fence.push({x:i*20,y:320})
-    // }
-    // for(var i=0;i<48;i++){
-    //     fence.push({x:460,y:i*20})
-    // }
-
-
-
-
-    //LEVEL 4 FENCE
-    //HORIZONTALS
-    // for(var i =0;i<10;i++){
-    //     fence.push({x:i*20,y:0});
-    // }
-    // for(var i =16;i<35;i++){
-    //     fence.push({x:i*20,y:0});
-    // }
-    //
-    // for(var i =0;i<26;i++){
-    //     fence.push({x:i*20,y:260});
-    // }
-    // for(var i =34;i<48;i++){
-    //     fence.push({x:i*20,y:260});
-    // }
-    // for(var i =0;i<48;i++){
-    //     fence.push({x:i*20,y:460});
-    // }
-    //
-    // //VERTICALS
-    // for(var i =1;i<=8;i++){
-    //     fence.push({x:0,y:i*20});
-    // }
-    // for(var i =1;i<=12;i++){
-    //     fence.push({x:500,y:i*20});
-    // }
-    // for(var i =1;i<=12;i++){
-    //     fence.push({x:700,y:460+i*20});
-    // }
-
-    //LEVEL 3 FENCE
-    // for(i = 0;i<48;i++){
-    //     fence.push({x:i*20,y:0},{x:i*20,y:620})
-    // }
-    // for(i = 0;i<48;i++){
-    //     fence.push({x:i*20,y:0},{x:i*20,y:620})
-    // }
-    // for(i = 0;i<10;i++){
-    //     fence.push({x:0,y:i*20},{x:940,y:i*20},
-    //         {x:0,y:620-i*20},{x:940,y:620-i*20}
-    //     )
-    // }
-    //
-    // shift_X = 300;
-    // shift_Y = 100;
-    // for(var i = 0;i<20;i++){
-    //     fence.push({x:+ shift_X,y:shift_Y + i*20},
-    //         {x:940 - shift_X,y:shift_Y +i*20}
-    //
-    //
-    //
-    //     )
-    // }
-
-
-
-
-    // LEVEL 2  FENCE
-    // var level_2_shiftX = 300;
-    // var level_2_shiftY = 100;
-    // for(var i = 0;i<20;i++){
-    //     fence.push({x:level_2_shiftX,y:620-i*20},{x:940-level_2_shiftX,y:i*20});
-    // }
-    // for(var i = 0;i<20;i++){
-    //     fence.push({x:i*20,y:level_2_shiftY},{x:940-i*20,y:620-level_2_shiftY});
-    // }
-
-    // //LEVEL 2 FENCE
-    // for(var i = 0;i<7;i++){
-    //     fence.push({x:i*20,y:0},{x:940 - i*20,y:0},
-    //         {x:i*20,y:620},{x:940 - i*20,y:620},
-    //         {x:0,y:i*20},{x:0,y:620 - i*20},
-    //         {x:940,y:i*20},{x:940,y:620 - i *20}
-    //     )
-    // }
-    // shift_X = 220;
-    // shift_Y = 200;
-    // for(var i = 0;i<25;i++){
-    //     fence.push({x:i*20 + shift_X,y:shift_Y},
-    //         {x:i*20 +shift_X,y:620 - shift_Y}
-    //
-    //     )
-    // }
-
-
-
-
-    // SIMPLE FENCE 1
-    // for(var i = 0;i< 48;i++){
-    //     fence.push({x:i*20,y:0},{x:i*20,y:620});
-    // }
-    //
-    //
-    // for(var i = 1;i< 31;i++){
-    //     fence.push({y:i*20,x:0},{y:i*20,x:940});
-    // }
 
 
     var SnakeDirections = {
@@ -183,6 +174,9 @@ window.onload = function ()
             snakeshift();
             score = score + 1;
             foodMaker();
+            if(score%2 == 0){
+                GAME_LEVEL = GAME_LEVEL + 1;
+            }
         }
 
 
@@ -192,17 +186,17 @@ window.onload = function ()
                 clearInterval(interval_id);
             }
         }
-        for(var i = 0;i< fence.length;i++){
-            if (snake_head.x === fence[i].x && snake_head.y === fence[i].y){
+        for(var i = 0;i< fence[GAME_LEVEL].length;i++){
+            if (snake_head.x === fence[GAME_LEVEL][i].x && snake_head.y === fence[GAME_LEVEL][i].y){
                 console.log("HIT");
                 clearInterval(interval_id);
             }
         }
-        for (var i =0;i<fence.length;i++){
-            ctx.fillRect(fence[i].x,fence[i].y,19,19);
+        for (var i =0;i<fence[GAME_LEVEL].length;i++){
+            ctx.fillRect(fence[GAME_LEVEL][i].x,fence[GAME_LEVEL][i].y,19,19);
         }
     }
-    interval_id = setInterval(animate, 100);
+    interval_id = setInterval(animate, 50);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         switch(direction){
