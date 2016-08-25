@@ -14,23 +14,53 @@ window.onload = function ()
 
 
 
+    //LEVEL 4 FENCE
+    //HORIZONTALS
+    for(var i =0;i<10;i++){
+        fence.push({x:i*20,y:0});
+    }
+    for(var i =16;i<35;i++){
+        fence.push({x:i*20,y:0});
+    }
+
+    for(var i =0;i<26;i++){
+        fence.push({x:i*20,y:260});
+    }
+    for(var i =34;i<48;i++){
+        fence.push({x:i*20,y:260});
+    }
+    for(var i =0;i<48;i++){
+        fence.push({x:i*20,y:460});
+    }
+
+    //VERTICALS
+    for(var i =1;i<=8;i++){
+        fence.push({x:0,y:i*20});
+    }
+
     //LEVEL 3 FENCE
-
-
-    for(i = 0;i<48;i++){
-        fence.push({x:i*20,y:0},{x:i*20,y:620})
-    }
-    for(i = 0;i<48;i++){
-        fence.push({x:i*20,y:0},{x:i*20,y:620})
-    }
-    for(i = 0;i<10;i++){
-        fence.push({x:0,y:i*20},{x:940,y:i*20},
-            {x:0,y:620-i*20},{x:940,y:620-i*20}
-
-
-
-        )
-    }
+    // for(i = 0;i<48;i++){
+    //     fence.push({x:i*20,y:0},{x:i*20,y:620})
+    // }
+    // for(i = 0;i<48;i++){
+    //     fence.push({x:i*20,y:0},{x:i*20,y:620})
+    // }
+    // for(i = 0;i<10;i++){
+    //     fence.push({x:0,y:i*20},{x:940,y:i*20},
+    //         {x:0,y:620-i*20},{x:940,y:620-i*20}
+    //     )
+    // }
+    //
+    // shift_X = 300;
+    // shift_Y = 100;
+    // for(var i = 0;i<20;i++){
+    //     fence.push({x:+ shift_X,y:shift_Y + i*20},
+    //         {x:940 - shift_X,y:shift_Y +i*20}
+    //
+    //
+    //
+    //     )
+    // }
 
 
 
@@ -45,7 +75,7 @@ window.onload = function ()
     //     fence.push({x:i*20,y:level_2_shiftY},{x:940-i*20,y:620-level_2_shiftY});
     // }
 
-    //LEVEL 1 FENCE
+    // //LEVEL 2 FENCE
     // for(var i = 0;i<7;i++){
     //     fence.push({x:i*20,y:0},{x:940 - i*20,y:0},
     //         {x:i*20,y:620},{x:940 - i*20,y:620},
@@ -65,7 +95,7 @@ window.onload = function ()
 
 
 
-    //SIMPLE FENCE
+    // SIMPLE FENCE 1
     // for(var i = 0;i< 48;i++){
     //     fence.push({x:i*20,y:0},{x:i*20,y:620});
     // }
