@@ -5,31 +5,39 @@ window.onload = function ()
 {
     var canvas = document.getElementById("snakecanvas");
     var ctx = canvas.getContext("2d");
-    var snake = [{x: 40, y: 100}, {x: 60, y: 100}, {x: 80, y: 100}, {x: 100, y: 100}];
+    var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}, {x: 100, y: 200}];
     var var_level_0 = [];
     var direction = 1;
     var rndX = 0, rndY = 0;
     // var fence = new Array(8);
     var fence = [];
+    // LEVEL 2  FENCE
+
+    var level_2_shiftX = 300;
+    var level_2_shiftY = 100;
+    for(var i = 0;i<20;i++){
+        fence.push({x:level_2_shiftX,y:620-i*20},{x:940-level_2_shiftX,y:i*20});
+    }
+    for(var i = 0;i<20;i++){
+        fence.push({x:i*20,y:level_2_shiftY},{x:940-i*20,y:620-level_2_shiftY});
+    }
 
     //LEVEL 1 FENCE
-    for(var i = 0;i<10;i++){
-        fence.push({x:i*20,y:0},{x:940 - i*20,y:0},
-            {x:i*20,y:620},{x:940 - i*20,y:620},
-            {x:0,y:i*20},{x:0,y:620 - i*20},
-
-
-            {x:940,y:i*20},{x:940,y:620 - i *20}
-
-
-
-
-
-
-
-
-        )
-    }
+    // for(var i = 0;i<7;i++){
+    //     fence.push({x:i*20,y:0},{x:940 - i*20,y:0},
+    //         {x:i*20,y:620},{x:940 - i*20,y:620},
+    //         {x:0,y:i*20},{x:0,y:620 - i*20},
+    //         {x:940,y:i*20},{x:940,y:620 - i *20}
+    //     )
+    // }
+    // shift_X = 220;
+    // shift_Y = 200;
+    // for(var i = 0;i<25;i++){
+    //     fence.push({x:i*20 + shift_X,y:shift_Y},
+    //         {x:i*20 +shift_X,y:620 - shift_Y}
+    //
+    //     )
+    // }
 
 
 
