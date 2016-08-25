@@ -4,6 +4,8 @@
 window.onload = function ()
 {
     var canvas = document.getElementById("snakecanvas");
+    var canvas1 = document.getElementById("snakescoreboard");
+    var ctx1 = canvas1.getContext("2d");
     var ctx = canvas.getContext("2d");
     var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}, {x: 100, y: 200}];
     var var_level_0 = [];
@@ -15,7 +17,7 @@ window.onload = function ()
         fence[i] = new Array();
     }
     fence[0] = [];
-    // SIMPLE FENCE 1
+    // BLANK FENCE 1
     for(var i = 0;i< 48;i++){
         fence[1].push({x:i*20,y:0},{x:i*20,y:620});
     }
@@ -32,13 +34,10 @@ window.onload = function ()
     }
     shift_X = 220;
     shift_Y = 200;
-    for(var i = 0;i<25;i++){
-        fence[2].push({x:i*20 + shift_X,y:shift_Y},
-            {x:i*20 +shift_X,y:620 - shift_Y}
-
-        )
+    for(var i = 0;i<25;i++) {
+        fence[2].push({x: i * 20 + shift_X, y: shift_Y},
+            {x: i * 20 + shift_X, y: 620 - shift_Y});
     }
-    console.log(fence);
     // LEVEL 3  FENCE
     var level_3_shiftX = 300;
     var level_3_shiftY = 100;
@@ -64,22 +63,15 @@ window.onload = function ()
     shift_Y = 100;
     for(var i = 0;i<20;i++){
         fence[4].push({x:+ shift_X,y:shift_Y + i*20},
-            {x:940 - shift_X,y:shift_Y +i*20}
-
-
-
-        )
+            {x:940 - shift_X,y:shift_Y +i*20});
     }
-    //
-    // LEVEL 5 FENCE
-    // HORIZONTALS
+    // LEVEL 5 FENCE HORIZONTALS
     for(var i =0;i<10;i++){
         fence[5].push({x:i*20,y:0});
     }
     for(var i =16;i<35;i++){
         fence[5].push({x:i*20,y:0});
     }
-
     for(var i =0;i<26;i++){
         fence[5].push({x:i*20,y:260});
     }
@@ -89,7 +81,6 @@ window.onload = function ()
     for(var i =0;i<48;i++){
         fence[5].push({x:i*20,y:460});
     }
-
     //VERTICALS
     for(var i =1;i<=8;i++){
         fence[5].push({x:0,y:i*20});
@@ -100,7 +91,6 @@ window.onload = function ()
     for(var i =1;i<=12;i++){
         fence[5].push({x:700,y:460+i*20});
     }
-
     //LEVEL 6 FENCE
     for(var i=0;i<48;i++){
         fence[6].push({x:i*20,y:320})
@@ -108,8 +98,6 @@ window.onload = function ()
     for(var i=0;i<48;i++){
         fence[6].push({x:460,y:i*20})
     }
-
-
     //LEVEL 7 FENCE
     for(var i=0;i<48;i++){
         fence[7].push({x:i*20,y:420})
@@ -117,15 +105,7 @@ window.onload = function ()
     for(var i = 0;i<11;i++){
         fence[7].push({x:240,y:420+i*20},{x:740,y:420+i*20})
     }
-
-
-
-    var SnakeDirections = {
-        UP: 4,
-        DOWN: 2,
-        LEFT: 3,
-        RIGHT: 1
-    }
+    var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
     score = 0;
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
@@ -164,10 +144,12 @@ window.onload = function ()
         }
         ctx.fillRect(rndX, rndY, 19, 19);
         snake.shift();
-        ctx.font = "20px sans-serif";
-        ctx.fillText("SCORE :" + score, 10, 90);
+        ctx1.background = "#000000";
+        ctx1.font = "20px sans-serif";
+        ctx1.clearRect(0,0,959,100);
+        ctx1.fillText("SCORE BOARD :" + score, canvas1.width/2, 20);
+        ctx1.fillText("SCORE :" + score, 60, 100);
         snakeshift();
-
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
         if (snake_head.x === rndX && snake_head.y === rndY) {
             console.log("Passed Food");
@@ -178,8 +160,6 @@ window.onload = function ()
                 GAME_LEVEL = GAME_LEVEL + 1;
             }
         }
-
-
         for(var i = 0;i<snake.length - 2;i++){
             if (snake_head.x === snake[i].x && snake_head.y === snake[i].y){
                 console.log("HIT");
@@ -222,6 +202,5 @@ window.onload = function ()
             rndX = Math.round(Math.random() * 38)*20;
             rndY = Math.round(Math.random() * 38)*20;
         }
-
     }
 }
