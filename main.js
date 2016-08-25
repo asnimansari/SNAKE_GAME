@@ -11,14 +11,38 @@ window.onload = function ()
     var rndX = 0, rndY = 0;
     // var fence = new Array(8);
     var fence = [];
-    for(var i = 0;i< 48;i++){
-        fence.push({x:i*20,y:0},{x:i*20,y:620});
+
+    //LEVEL 1 FENCE
+    for(var i = 0;i<10;i++){
+        fence.push({x:i*20,y:0},{x:940 - i*20,y:0},
+            {x:i*20,y:620},{x:940 - i*20,y:620},
+            {x:0,y:i*20},{x:0,y:620 - i*20},
+
+
+            {x:940,y:i*20},{x:940,y:620 - i *20}
+
+
+
+
+
+
+
+
+        )
     }
 
 
-    for(var i = 1;i< 31;i++){
-        fence.push({y:i*20,x:0},{y:i*20,x:940});
-    }
+
+
+    //SIMPLE FENCE
+    // for(var i = 0;i< 48;i++){
+    //     fence.push({x:i*20,y:0},{x:i*20,y:620});
+    // }
+    //
+    //
+    // for(var i = 1;i< 31;i++){
+    //     fence.push({y:i*20,x:0},{y:i*20,x:940});
+    // }
 
 
     var SnakeDirections = {
@@ -90,16 +114,11 @@ window.onload = function ()
                 clearInterval(interval_id);
             }
         }
-
-
-
-
-
         for (var i =0;i<fence.length;i++){
             ctx.fillRect(fence[i].x,fence[i].y,19,19);
         }
     }
-    interval_id = setInterval(animate, 10);
+    interval_id = setInterval(animate, 100);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         switch(direction){
