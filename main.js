@@ -86,7 +86,7 @@ window.onload = function ()
         }
         for(var i = 0;i< fence.length;i++){
             if (snake_head.x === fence[i].x && snake_head.y === fence[i].y){
-                console.log("HIT");
+                console.log("HIT");r
                 clearInterval(interval_id);
             }
         }
