@@ -12,37 +12,46 @@ window.onload = function ()
     // var fence = new Array(8);
     var fence = [];
 
+    //LEVEL 5 FENCE
+    for(var i=0;i<48;i++){
+        fence.push({x:i*20,y:320})
+    }
+    for(var i=0;i<48;i++){
+        fence.push({x:460,y:i*20})
+    }
+
+
 
 
     //LEVEL 4 FENCE
     //HORIZONTALS
-    for(var i =0;i<10;i++){
-        fence.push({x:i*20,y:0});
-    }
-    for(var i =16;i<35;i++){
-        fence.push({x:i*20,y:0});
-    }
-
-    for(var i =0;i<26;i++){
-        fence.push({x:i*20,y:260});
-    }
-    for(var i =34;i<48;i++){
-        fence.push({x:i*20,y:260});
-    }
-    for(var i =0;i<48;i++){
-        fence.push({x:i*20,y:460});
-    }
-
-    //VERTICALS
-    for(var i =1;i<=8;i++){
-        fence.push({x:0,y:i*20});
-    }
-    for(var i =1;i<=12;i++){
-        fence.push({x:500,y:i*20});
-    }
-    for(var i =1;i<=12;i++){
-        fence.push({x:700,y:460+i*20});
-    }
+    // for(var i =0;i<10;i++){
+    //     fence.push({x:i*20,y:0});
+    // }
+    // for(var i =16;i<35;i++){
+    //     fence.push({x:i*20,y:0});
+    // }
+    //
+    // for(var i =0;i<26;i++){
+    //     fence.push({x:i*20,y:260});
+    // }
+    // for(var i =34;i<48;i++){
+    //     fence.push({x:i*20,y:260});
+    // }
+    // for(var i =0;i<48;i++){
+    //     fence.push({x:i*20,y:460});
+    // }
+    //
+    // //VERTICALS
+    // for(var i =1;i<=8;i++){
+    //     fence.push({x:0,y:i*20});
+    // }
+    // for(var i =1;i<=12;i++){
+    //     fence.push({x:500,y:i*20});
+    // }
+    // for(var i =1;i<=12;i++){
+    //     fence.push({x:700,y:460+i*20});
+    // }
 
     //LEVEL 3 FENCE
     // for(i = 0;i<48;i++){
