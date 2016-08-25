@@ -37,6 +37,12 @@ window.onload = function ()
     for(var i =1;i<=8;i++){
         fence.push({x:0,y:i*20});
     }
+    for(var i =1;i<=12;i++){
+        fence.push({x:500,y:i*20});
+    }
+    for(var i =1;i<=12;i++){
+        fence.push({x:700,y:460+i*20});
+    }
 
     //LEVEL 3 FENCE
     // for(i = 0;i<48;i++){
