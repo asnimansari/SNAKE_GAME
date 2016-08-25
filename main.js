@@ -11,16 +11,39 @@ window.onload = function ()
     var rndX = 0, rndY = 0;
     // var fence = new Array(8);
     var fence = [];
-    // LEVEL 2  FENCE
 
-    var level_2_shiftX = 300;
-    var level_2_shiftY = 100;
-    for(var i = 0;i<20;i++){
-        fence.push({x:level_2_shiftX,y:620-i*20},{x:940-level_2_shiftX,y:i*20});
+
+
+    //LEVEL 3 FENCE
+
+
+    for(i = 0;i<48;i++){
+        fence.push({x:i*20,y:0},{x:i*20,y:620})
     }
-    for(var i = 0;i<20;i++){
-        fence.push({x:i*20,y:level_2_shiftY},{x:940-i*20,y:620-level_2_shiftY});
+    for(i = 0;i<48;i++){
+        fence.push({x:i*20,y:0},{x:i*20,y:620})
     }
+    for(i = 0;i<10;i++){
+        fence.push({x:0,y:i*20},{x:940,y:i*20},
+            {x:0,y:620-i*20},{x:940,y:620-i*20}
+
+
+
+        )
+    }
+
+
+
+
+    // LEVEL 2  FENCE
+    // var level_2_shiftX = 300;
+    // var level_2_shiftY = 100;
+    // for(var i = 0;i<20;i++){
+    //     fence.push({x:level_2_shiftX,y:620-i*20},{x:940-level_2_shiftX,y:i*20});
+    // }
+    // for(var i = 0;i<20;i++){
+    //     fence.push({x:i*20,y:level_2_shiftY},{x:940-i*20,y:620-level_2_shiftY});
+    // }
 
     //LEVEL 1 FENCE
     // for(var i = 0;i<7;i++){
