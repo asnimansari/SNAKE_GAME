@@ -11,14 +11,22 @@ window.onload = function ()
     var rndX = 0, rndY = 0;
     // var fence = new Array(8);
     var fence = [];
+    //LEVEL 6 FENCE
+    for(var i=0;i<48;i++){
+        fence.push({x:i*20,y:420})
+    }
+    for(var i = 0;i<11;i++){
+        fence.push({x:240,y:420+i*20},{x:740,y:420+i*20})
+    }
+
 
     //LEVEL 5 FENCE
-    for(var i=0;i<48;i++){
-        fence.push({x:i*20,y:320})
-    }
-    for(var i=0;i<48;i++){
-        fence.push({x:460,y:i*20})
-    }
+    // for(var i=0;i<48;i++){
+    //     fence.push({x:i*20,y:320})
+    // }
+    // for(var i=0;i<48;i++){
+    //     fence.push({x:460,y:i*20})
+    // }
 
 
 
