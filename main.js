@@ -11,6 +11,7 @@ window.onload = function ()
     var var_level_0 = [];
     var direction = 1;
     var rndX = 0, rndY = 0;
+    var REFRESH_DELAY = 150;
     var GAME_LEVEL = 0;
     var fence = new Array(8);
     for(i = 0;i<fence.length;i++){
@@ -51,9 +52,6 @@ window.onload = function ()
     for(i = 0;i<48;i++){
         fence[4].push({x:i*20,y:0},{x:i*20,y:620})
     }
-    for(i = 0;i<48;i++){
-        fence[4].push({x:i*20,y:0},{x:i*20,y:620})
-    }
     for(i = 0;i<10;i++){
         fence[4].push({x:0,y:i*20},{x:940,y:i*20},
             {x:0,y:620-i*20},{x:940,y:620-i*20}
@@ -61,8 +59,9 @@ window.onload = function ()
     }
     shift_X = 300;
     shift_Y = 100;
+    Y_Offet = 120;
     for(var i = 0;i<20;i++){
-        fence[4].push({x:+ shift_X,y:shift_Y + i*20},
+        fence[4].push({x:+ shift_X,y:shift_Y +Y_Offet+ i*20},
             {x:940 - shift_X,y:shift_Y +i*20});
     }
     // LEVEL 5 FENCE HORIZONTALS
@@ -107,20 +106,30 @@ window.onload = function ()
     }
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
     score = 0;
+
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
         console.log(keyCode);
-        if ((keyCode === 39 || keyCode === 68) && direction != SnakeDirections.LEFT) {
-            direction = SnakeDirections.RIGHT;
-        }
-        if ((keyCode === 40 || keyCode === 83) && direction != SnakeDirections.UP) {
-            direction = SnakeDirections.DOWN;
-        }
-        if ((keyCode === 37 || keyCode === 65)&& direction != SnakeDirections.RIGHT) {
-            direction = SnakeDirections.LEFT;
-        }
-        if ((keyCode === 38 || keyCode === 87) && direction != SnakeDirections.DOWN) {
-            direction = SnakeDirections.UP;
+        keyList = {39:false,40:false,37:false,38:false}
+
+        keyList[keyCode] = true;
+        if(!keyList[39] && !keyList[40] && !keyList[37] && keyList[38] ||
+            !keyList[39] && !keyList[40] && keyList[37] && !keyList[38] ||
+            !keyList[39] && keyList[40] && !keyList[37] && !keyList[38] ||
+            keyList[39] && !keyList[40] && !keyList[37] && !keyList[38]
+        ){
+            if ((keyCode === 39) && direction != SnakeDirections.LEFT) {
+                direction = SnakeDirections.RIGHT;
+            }
+            else if ((keyCode === 40) && direction != SnakeDirections.UP) {
+                direction = SnakeDirections.DOWN;
+            }
+            else if ((keyCode === 37)&& direction != SnakeDirections.RIGHT) {
+                direction = SnakeDirections.LEFT;
+            }
+            else if ((keyCode === 38) && direction != SnakeDirections.DOWN) {
+                direction = SnakeDirections.UP;
+            }
         }
     });
     foodMaker();
@@ -157,7 +166,13 @@ window.onload = function ()
             score = score + 1;
             foodMaker();
             if(score%2 == 0){
+                snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}, {x: 100, y: 180}];
+                direction = SnakeDirections.RIGHT;
                 GAME_LEVEL = GAME_LEVEL + 1;
+                if(GAME_LEVEL === 8){
+                    GAME_LEVEL = 0;
+                }
+
             }
         }
         for(var i = 0;i<snake.length - 2;i++){
@@ -176,7 +191,7 @@ window.onload = function ()
             ctx.fillRect(fence[GAME_LEVEL][i].x,fence[GAME_LEVEL][i].y,19,19);
         }
     }
-    interval_id = setInterval(animate, 50);
+    interval_id = setInterval(animate, REFRESH_DELAY);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         switch(direction){
