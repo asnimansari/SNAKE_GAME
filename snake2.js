@@ -13,8 +13,6 @@ window.onload = function () {
     var FOOD_POS = {x:0,y:0};
     var SnakeDIR = {RIGHT:1,DOWN:2,LEFT:3,UP:4};
     var DIRECTION = SnakeDIR.RIGHT;
-
-
     var matrix = new Array(COLM);
     for(var i =0 ;i<COLM;i++){
         matrix[i] = new Array(ROW);
@@ -32,9 +30,9 @@ window.onload = function () {
     }
     
     function snake_initialization () {
-        matrix[5][10] = SNAKE;
-        matrix[6][10] = SNAKE;
-        matrix[7][10] =  SNAKE;
+        // matrix[5][10] = SNAKE;
+        // matrix[6][10] = SNAKE;
+        // matrix[7][10] =  SNAKE;
         snake = new Array({x:5,y:10},{x:6,y:10},{x:7,y:10});
     }
     function generate_food() {
@@ -46,7 +44,7 @@ window.onload = function () {
         }
         console.log("FOOD CO ORDINATES",FOOD_POS.x,FOOD_POS.y);
     }
-    setInterval(drawGame,100);
+    setInterval(drawGame,400);
     drawGame();
     function drawGame() {
         console.log("DRAWING GAME");
@@ -60,5 +58,17 @@ window.onload = function () {
                 }
             }
         }
+        for(var i = 0;i<snake.length;i++){
+
+            ctx.fillRect(snake[i].x*10,snake[i].y*10,9,9);
+        }
+        snake.shift();
+        switch (DIRECTION){
+            case SnakeDIR.RIGHT:
+                snake.push({x:snake[snake.length - 1].x+1,y:snake[snake.length -1].y});
+                break;
+
+        }
+        console.log(snake);
     }
 }
