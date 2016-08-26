@@ -7,8 +7,7 @@ window.onload = function ()
     var canvas1 = document.getElementById("snakescoreboard");
     var ctx1 = canvas1.getContext("2d");
     var ctx = canvas.getContext("2d");
-    var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}, {x: 100, y: 200}];
-    var var_level_0 = [];
+    var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}];
     var direction = 1;
     var rndX = 0, rndY = 0;
     var REFRESH_DELAY = 150;
@@ -31,7 +30,7 @@ window.onload = function ()
             {x:i*20,y:620},{x:940 - i*20,y:620},
             {x:0,y:i*20},{x:0,y:620 - i*20},
             {x:940,y:i*20},{x:940,y:620 - i *20}
-        )
+        );
     }
     shift_X = 220;
     shift_Y = 200;
@@ -171,8 +170,8 @@ window.onload = function ()
                 GAME_LEVEL = GAME_LEVEL + 1;
                 if(GAME_LEVEL === 8){
                     GAME_LEVEL = 0;
+                    REFRESH_DELAY = REFRESH_DELAY - 20;
                 }
-
             }
         }
         for(var i = 0;i<snake.length - 2;i++){
@@ -213,9 +212,23 @@ window.onload = function ()
         rndX = Math.round(Math.random() * 38)*20,
             rndY = Math.round(Math.random() * 38)*20;
         console.log(rndX,rndY);
-        while(rndX > 940 || rndY > 620){
+        while(rndX > 920 || rndY > 600){
             rndX = Math.round(Math.random() * 38)*20;
             rndY = Math.round(Math.random() * 38)*20;
         }
+        var total_length = fence[GAME_LEVEL].length;
+        for (var i = 0;i<total_length;i++){
+            if (fence[GAME_LEVEL][i].x === rndX && fence[GAME_LEVEL][i].y === rndY){
+                console.log()
+                rndX = Math.round(Math.random() * 38)*20;
+                rndY = Math.round(Math.random() * 38)*20;
+                i = 0;
+            }
+        }
+    }
+    function snaketexturedrawer(x,y,pos) {
+
+
+
     }
 }
