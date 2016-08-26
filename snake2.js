@@ -17,6 +17,25 @@ window.onload = function () {
     for(var i =0 ;i<COLM;i++){
         matrix[i] = new Array(ROW);
     }
+
+
+    document.addEventListener("keydown", function (e) {
+        var keyCode = e.keyCode;
+
+            if ((keyCode === 39) && DIRECTION != SnakeDIR.LEFT) {
+                DIRECTION = SnakeDIR.RIGHT;
+            }
+            else if ((keyCode === 40) && DIRECTION != SnakeDIR.UP) {
+                DIRECTION = SnakeDIR.DOWN;
+            }
+            else if ((keyCode === 37)&& DIRECTION != SnakeDIR.RIGHT) {
+                DIRECTION = SnakeDIR.LEFT;
+            }
+            else if ((keyCode === 38) && DIRECTION != SnakeDIR.DOWN) {
+                DIRECTION = SnakeDIR.UP;
+            }
+
+    });
     matrix_initialisation();
     snake_initialization();
     generate_food();
@@ -30,9 +49,6 @@ window.onload = function () {
     }
     
     function snake_initialization () {
-        // matrix[5][10] = SNAKE;
-        // matrix[6][10] = SNAKE;
-        // matrix[7][10] =  SNAKE;
         snake = new Array({x:5,y:10},{x:6,y:10},{x:7,y:10});
     }
     function generate_food() {
@@ -58,14 +74,35 @@ window.onload = function () {
                 }
             }
         }
-        for(var i = 0;i<snake.length;i++){
 
+        for(var i = 0;i<snake.length;i++){
+            if(snake[i].x >=COLM){
+                snake[i].x = 0;
+            }
+            if(snake[i].y >=ROW){
+                snake[i].y = 0;
+            }
+            if(snake[i].x <0){
+                snake[i].x = COLM - 1;
+            }
+            if(snake[i].y <0){
+                snake[i].y = ROW - 1;
+            }
             ctx.fillRect(snake[i].x*10,snake[i].y*10,9,9);
         }
         snake.shift();
         switch (DIRECTION){
             case SnakeDIR.RIGHT:
                 snake.push({x:snake[snake.length - 1].x+1,y:snake[snake.length -1].y});
+                break;
+            case SnakeDIR.LEFT:
+                snake.push({x:snake[snake.length - 1].x-1,y:snake[snake.length -1].y});
+                break;
+            case SnakeDIR.UP:
+                snake.push({x:snake[snake.length - 1].x,y:snake[snake.length -1].y - 1});
+                break;
+            case SnakeDIR.DOWN:
+                snake.push({x:snake[snake.length - 1].x,y:snake[snake.length -1].y + 1});
                 break;
 
         }
