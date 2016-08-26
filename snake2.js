@@ -16,12 +16,11 @@ window.onload = function () {
     }
     matrix_initialisation();
     function matrix_initialisation() {
-        console.log(matrix);
         for(var i = 0;i<ROW;i++){
-            for (j = 0;i<COLM;j++){
-                matrix[i][j] = 0;
+            console.log(matrix[i].length);
+            for(var j = 0;j<COLM;j++){
+                matrix[i][j] = 5;
             }
         }
-
     }
 }
