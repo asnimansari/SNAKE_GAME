@@ -17,23 +17,28 @@ window.onload = function () {
     for(var i =0 ;i<COLM;i++){
         matrix[i] = new Array(ROW);
     }
-
+    keyWorkPending = false;
 
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
-
+        if(!keyWorkPending) {
             if ((keyCode === 39) && DIRECTION != SnakeDIR.LEFT) {
                 DIRECTION = SnakeDIR.RIGHT;
+                keyWorkPending = true;
             }
             else if ((keyCode === 40) && DIRECTION != SnakeDIR.UP) {
                 DIRECTION = SnakeDIR.DOWN;
+                keyWorkPending = true;
             }
-            else if ((keyCode === 37)&& DIRECTION != SnakeDIR.RIGHT) {
+            else if ((keyCode === 37) && DIRECTION != SnakeDIR.RIGHT) {
                 DIRECTION = SnakeDIR.LEFT;
+                keyWorkPending = true;
             }
             else if ((keyCode === 38) && DIRECTION != SnakeDIR.DOWN) {
                 DIRECTION = SnakeDIR.UP;
+                keyWorkPending = true;
             }
+        }
 
     });
     matrix_initialisation();
@@ -52,12 +57,16 @@ window.onload = function () {
         snake = new Array({x:5,y:10},{x:6,y:10},{x:7,y:10});
     }
     function generate_food() {
+        matrix_initialisation();
         FOOD_POS.x = Math.round(Math.random()*100);
         FOOD_POS.y = Math.round(Math.random()*100);
-        if(FOOD_POS.x >= ROW || FOOD_POS.y>=COLM){
+        while(FOOD_POS.x >= COLM || FOOD_POS.y>=ROW){
             FOOD_POS.x = Math.round(Math.random()*100);
             FOOD_POS.y = Math.round(Math.random()*100);
         }
+        matrix[FOOD_POS.x][FOOD_POS.y] = FOOD;
+
+
         console.log("FOOD CO ORDINATES",FOOD_POS.x,FOOD_POS.y);
     }
     setInterval(drawGame,400);
@@ -90,22 +99,33 @@ window.onload = function () {
             }
             ctx.fillRect(snake[i].x*10,snake[i].y*10,9,9);
         }
+        ctx.fillRect(FOOD_POS.x *10,FOOD_POS.y*10,9,9);
         snake.shift();
+        if(matrix[snake[snake.length-1].x][snake[snake.length - 1].y] == FOOD){
+            expand_snake();
+        }
+        expand_snake();
+    }
+    function expand_snake() {
         switch (DIRECTION){
             case SnakeDIR.RIGHT:
                 snake.push({x:snake[snake.length - 1].x+1,y:snake[snake.length -1].y});
+                keyWorkPending =  false;
                 break;
             case SnakeDIR.LEFT:
                 snake.push({x:snake[snake.length - 1].x-1,y:snake[snake.length -1].y});
+                keyWorkPending = false;
                 break;
             case SnakeDIR.UP:
                 snake.push({x:snake[snake.length - 1].x,y:snake[snake.length -1].y - 1});
+                keyWorkPending = false
                 break;
             case SnakeDIR.DOWN:
                 snake.push({x:snake[snake.length - 1].x,y:snake[snake.length -1].y + 1});
+                keyWorkPending = false;
                 break;
 
         }
-        console.log(snake);
+
     }
 }
