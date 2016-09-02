@@ -8,6 +8,8 @@ window.onload = function ()
     var ctx1 = canvas1.getContext("2d");
     var ctx = canvas.getContext("2d");
     var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}];
+    var snake1 = [{x: 140, y: 200}, {x: 160, y: 200}, {x: 180, y: 200}];
+
     var direction = 1;
     var rndX = 0, rndY = 0;
     var REFRESH_DELAY = 150;
@@ -150,7 +152,23 @@ window.onload = function ()
                 snake[i].y = 640;
             }
         }
+        for (var i = 0; i < snake1.length; i++) {
+            ctx.fillRect(snake1[i].x, snake1[i].y, 19, 19);
+            if (snake1[i].x > 940) {
+                snake1[i].x = 0;
+            }
+            if (snake1[i].y > 620) {
+                snake[i].y = 0;
+            }
+            if (snake1[i].x < 0) {
+                snake1[i].x = 960;
+            }
+            if (snake1[i].y < 0) {
+                snake1[i].y = 640;
+            }
+        }
         ctx.fillRect(rndX, rndY, 19, 19);
+        snake1.shift();
         snake.shift();
         ctx1.background = "#000000";
         ctx1.font = "20px sans-serif";

@@ -150,7 +150,8 @@ window.onload = function ()
                 snake[i].y = 640;
             }
         }
-        ctx.fillRect(rndX, rndY, 19, 19);
+        // ctx.fillRect(rndX, rndY, 19, 19);
+        snakeFoodDraw();
         snake.shift();
         ctx1.background = "#000000";
         ctx1.font = "20px sans-serif";
@@ -226,7 +227,18 @@ window.onload = function ()
             }
         }
     }
-    function snaketexturedrawer(x,y,pos) {
+    function snakeFoodDraw() {
+        // ctx.fillRect(rndX,rndY,19,19);
+        // ctx.fillRect(rndX + 20,rndY,19,19);
+
+        ctx.fillRect(rndX + 6,rndY,6,6);
+        ctx.fillRect(rndX + 6,rndY + 12,6,6);
+        ctx.fillRect(rndX,rndY + 6,6,6);
+        ctx.fillRect(rndX + 12,rndY + 6,6,6);
+
+
+
+
 
 
 
