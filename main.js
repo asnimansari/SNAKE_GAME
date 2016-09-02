@@ -218,29 +218,20 @@ window.onload = function ()
             rndY = Math.round(Math.random() * 38)*20;
         }
         var total_length = fence[GAME_LEVEL].length;
-        for (var i = 0;i<total_length;i++){
+        for (i = 0;i<total_length;i++){
             if (fence[GAME_LEVEL][i].x === rndX && fence[GAME_LEVEL][i].y === rndY){
-                console.log()
                 rndX = Math.round(Math.random() * 38)*20;
                 rndY = Math.round(Math.random() * 38)*20;
                 i = 0;
+                console.log("IN FENSE");
             }
         }
     }
     function snakeFoodDraw() {
-        // ctx.fillRect(rndX,rndY,19,19);
-        // ctx.fillRect(rndX + 20,rndY,19,19);
-
+        // Changed Shape of Food
         ctx.fillRect(rndX + 6,rndY,6,6);
         ctx.fillRect(rndX + 6,rndY + 12,6,6);
         ctx.fillRect(rndX,rndY + 6,6,6);
         ctx.fillRect(rndX + 12,rndY + 6,6,6);
-
-
-
-
-
-
-
     }
 }
