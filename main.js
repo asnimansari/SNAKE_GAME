@@ -106,10 +106,11 @@ window.onload = function ()
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
     score = 0;
 
+    var key_executed = true;
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
         console.log(keyCode);
-        keyList = {39:false,40:false,37:false,38:false}
+        keyList = {39:false,40:false,37:false,38:false};
 
         keyList[keyCode] = true;
         if(!keyList[39] && !keyList[40] && !keyList[37] && keyList[38] ||
@@ -117,16 +118,20 @@ window.onload = function ()
             !keyList[39] && keyList[40] && !keyList[37] && !keyList[38] ||
             keyList[39] && !keyList[40] && !keyList[37] && !keyList[38]
         ){
-            if ((keyCode === 39) && direction != SnakeDirections.LEFT) {
+            if ((keyCode === 39) && direction != SnakeDirections.LEFT && key_executed) {
+                key_executed = false;
                 direction = SnakeDirections.RIGHT;
             }
-            else if ((keyCode === 40) && direction != SnakeDirections.UP) {
+            else if ((keyCode === 40) && direction != SnakeDirections.UP && key_executed) {
+                key_executed = false;
                 direction = SnakeDirections.DOWN;
             }
-            else if ((keyCode === 37)&& direction != SnakeDirections.RIGHT) {
+            else if ((keyCode === 37)&& direction != SnakeDirections.RIGHT && key_executed) {
+                key_executed = false;
                 direction = SnakeDirections.LEFT;
             }
-            else if ((keyCode === 38) && direction != SnakeDirections.DOWN) {
+            else if ((keyCode === 38) && direction != SnakeDirections.DOWN && key_executed) {
+                key_executed = false;
                 direction = SnakeDirections.UP;
             }
         }
@@ -136,8 +141,8 @@ window.onload = function ()
         ctx.clearRect(0, 0, 959, 639);
         ctx.fillStyle = "#384619";
         for (var i = 0; i < snake.length; i++) {
-            // ctx.fillRect(snake[i].x, snake[i].y, 19, 19);
-            snakeDraw(snake[i].x,snake[i].y);
+            ctx.fillRect(snake[i].x, snake[i].y, 19, 19);
+            // snakeDraw(snake[i].x,snake[i].y);
             if (snake[i].x > 940) {
                 snake[i].x = 0;
             }
@@ -160,6 +165,7 @@ window.onload = function ()
         ctx1.fillText("SCORE BOARD :" + score, canvas1.width/2, 20);
         ctx1.fillText("SCORE :" + score, 60, 100);
         snakeshift();
+        key_executed = true
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
         if (snake_head.x === rndX && snake_head.y === rndY) {
             console.log("Passed Food");
@@ -170,9 +176,10 @@ window.onload = function ()
                 snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}, {x: 100, y: 180}];
                 direction = SnakeDirections.RIGHT;
                 GAME_LEVEL = GAME_LEVEL + 1;
+                foodMaker();
                 if(GAME_LEVEL === 8){
                     GAME_LEVEL = 0;
-                    REFRESH_DELAY = REFRESH_DELAY - 20;
+                    REFRESH_DELAY = REFRESH_DELAY - 10;
                 }
             }
         }
@@ -225,8 +232,10 @@ window.onload = function ()
                 rndX = Math.round(Math.random() * 38)*20;
                 rndY = Math.round(Math.random() * 38)*20;
                 i = 0;
+
                 console.log("IN FENSE");
             }
+            console.log("LOOPING");
         }
     }
     function snakeFoodDraw() {
@@ -236,8 +245,5 @@ window.onload = function ()
         ctx.fillRect(rndX,rndY + 6,6,6);
         ctx.fillRect(rndX + 12,rndY + 6,6,6);
     }
-    function snakeDraw(X,Y){
-        ctx.fillRect(X,Y,19,9);
-        ctx.fillRect(X - 5 ,Y + 10,19,9);
-    }
+
 }
