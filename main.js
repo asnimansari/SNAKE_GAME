@@ -136,7 +136,8 @@ window.onload = function ()
         ctx.clearRect(0, 0, 959, 639);
         ctx.fillStyle = "#384619";
         for (var i = 0; i < snake.length; i++) {
-            ctx.fillRect(snake[i].x, snake[i].y, 19, 19);
+            // ctx.fillRect(snake[i].x, snake[i].y, 19, 19);
+            snakeDraw(snake[i].x,snake[i].y);
             if (snake[i].x > 940) {
                 snake[i].x = 0;
             }
@@ -194,6 +195,7 @@ window.onload = function ()
     interval_id = setInterval(animate, REFRESH_DELAY);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
+        last_pos = snake[snake.length - 1];
         switch(direction){
             case 1:
                 snake.push({x:last_pos.x + 20,y:last_pos.y});
@@ -233,5 +235,9 @@ window.onload = function ()
         ctx.fillRect(rndX + 6,rndY + 12,6,6);
         ctx.fillRect(rndX,rndY + 6,6,6);
         ctx.fillRect(rndX + 12,rndY + 6,6,6);
+    }
+    function snakeDraw(X,Y){
+        ctx.fillRect(X,Y,19,9);
+        ctx.fillRect(X - 5 ,Y + 10,19,9);
     }
 }
