@@ -17,6 +17,7 @@ window.onload = function ()
     var aud_btnPress = new Audio('audio/btn_press.mp3');
     var aud_foodCaptured = new Audio('audio/food_captured.mp3');
     var aud_wallHit = new Audio('audio/wall_hit.mp3');
+    var aud_selfBite = new Audio('audio/self_bite.mp3');
     for(i = 0;i<fence.length;i++){
         fence[i] = new Array();
     }
@@ -204,11 +205,7 @@ window.onload = function ()
         }
         for(var i = 0;i< fence[GAME_LEVEL].length;i++){
             if (snake_head.x === fence[GAME_LEVEL][i].x && snake_head.y === fence[GAME_LEVEL][i].y){
-
-
-                aud_wallHit.play();
-                console.log("HIT");
-                clearInterval(interval_id);
+                selfBite();
             }
         }
         for (var i =0;i<fence[GAME_LEVEL].length;i++){
@@ -263,6 +260,14 @@ window.onload = function ()
     function wallHit() {
         console.log("HIT");
         aud_wallHit.play();
+        clearInterval(interval_id);
+
+    }
+    function selfBite() {
+
+
+        aud_selfBite.play();
+        console.log("HIT");
         clearInterval(interval_id);
 
     }
