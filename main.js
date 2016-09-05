@@ -13,6 +13,8 @@ window.onload = function ()
     var REFRESH_DELAY = 150;
     var GAME_LEVEL = 0;
     var fence = new Array(8);
+
+    var aud_btnPress = new Audio('audio/btn_press.mp3');
     for(i = 0;i<fence.length;i++){
         fence[i] = new Array();
     }
@@ -121,18 +123,26 @@ window.onload = function ()
             if ((keyCode === 39) && direction != SnakeDirections.LEFT && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.RIGHT;
+                aud_btnPress.play();
+
             }
             else if ((keyCode === 40) && direction != SnakeDirections.UP && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.DOWN;
+                aud_btnPress.play();
+
             }
             else if ((keyCode === 37)&& direction != SnakeDirections.RIGHT && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.LEFT;
+                aud_btnPress.play();
+
             }
             else if ((keyCode === 38) && direction != SnakeDirections.DOWN && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.UP;
+                aud_btnPress.play();
+
             }
         }
     });
