@@ -3,10 +3,13 @@
  */
 window.onload = function ()
 {
+    // INITIALISING CANVAS AND OTHER COMPONENTS REQUIRED
     var canvas = document.getElementById("snakecanvas");
     var canvas1 = document.getElementById("snakescoreboard");
     var ctx1 = canvas1.getContext("2d");
     var ctx = canvas.getContext("2d");
+
+    // INITIALISED SNAKE
     var snake = [{x: 40, y: 200}, {x: 60, y: 200}, {x: 80, y: 200}];
     var direction = 1;
     var rndX = 0, rndY = 0;
@@ -14,10 +17,13 @@ window.onload = function ()
     var GAME_LEVEL = 0;
     var fence = new Array(8);
 
+    //AUDIO INITIALISATION FOR THE GAME
     var aud_btnPress = new Audio('audio/btn_press.mp3');
     var aud_foodCaptured = new Audio('audio/food_captured.mp3');
     var aud_wallHit = new Audio('audio/wall_hit.mp3');
     var aud_selfBite = new Audio('audio/self_bite.mp3');
+
+    //AUTOMATIC FENCE GENERATION FOR EACH LEVEL
     for(i = 0;i<fence.length;i++){
         fence[i] = new Array();
     }
@@ -108,16 +114,22 @@ window.onload = function ()
     for(var i = 0;i<11;i++){
         fence[7].push({x:240,y:420+i*20},{x:740,y:420+i*20})
     }
-    var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
-    score = 0;
+    // END OF FENCE GENERATION SECTION
 
+    // SNAKEDIRECTION DICTIONARY CREATIION
+    var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
+    // SCORE INITIALISATION
+    score = 0;
+    // KEYPRESS AND EXECUTION FLAG( USED TO PREVENT MUTLIPLE STROKES WHICH LEADS TO SNAKE BIT )
     var key_executed = true;
+
+    // ARROW KEY LISTNER FOR SNAKE CONTROLS
     document.addEventListener("keydown", function (e) {
         var keyCode = e.keyCode;
-        console.log(keyCode);
         keyList = {39:false,40:false,37:false,38:false};
-
         keyList[keyCode] = true;
+        // PRECAUTION TO PREVENT HITTING MUTLIPLE KEY( IMPLIMENTED A BOOLEAN FUNCTION WITH VARIABLES WHICH SHOWS TRUE WHEN ONLY ONE VARIABLE IS TRUE)
+        // USED HERE TO DETECT WHETHER TWO KEYS HAS BEEN STRUCK TOGETHER
         if(!keyList[39] && !keyList[40] && !keyList[37] && keyList[38] ||
             !keyList[39] && !keyList[40] && keyList[37] && !keyList[38] ||
             !keyList[39] && keyList[40] && !keyList[37] && !keyList[38] ||
@@ -127,35 +139,37 @@ window.onload = function ()
                 key_executed = false;
                 direction = SnakeDirections.RIGHT;
                 aud_btnPress.play();
-
             }
             else if ((keyCode === 40) && direction != SnakeDirections.UP && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.DOWN;
                 aud_btnPress.play();
-
             }
             else if ((keyCode === 37)&& direction != SnakeDirections.RIGHT && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.LEFT;
                 aud_btnPress.play();
-
             }
             else if ((keyCode === 38) && direction != SnakeDirections.DOWN && key_executed) {
                 key_executed = false;
                 direction = SnakeDirections.UP;
                 aud_btnPress.play();
-
             }
         }
     });
     foodMaker();
+
+    // ANIMATE FUNCTION IS USED TO REFRESH THE CANVAS
     function animate() {
         ctx.clearRect(0, 0, 959, 639);
         ctx.fillStyle = "#384619";
+
+        // LOOP FOR DRAWING SNAKE
         for (var i = 0; i < snake.length; i++) {
             ctx.fillRect(snake[i].x, snake[i].y, 19, 19);
-            // snakeDraw(snake[i].x,snake[i].y);
+
+            // IF ELSE SECTION TO DETECT WHETHER THE SNAKE HEAD HAS PASSED ORIGIN
+            // AND SET APPROPIRATE  CO ORDIATES
             if (snake[i].x > 940) {
                 snake[i].x = 0;
             }
@@ -169,9 +183,8 @@ window.onload = function ()
                 snake[i].y = 640;
             }
         }
-        // ctx.fillRect(rndX, rndY, 19, 19);
         snakeFoodDraw();
-        snake.shift();
+        snake.shift(); // USED TO MOVE SNAKE
         ctx1.background = "#000000";
         ctx1.font = "20px sans-serif";
         ctx1.clearRect(0,0,959,100);
@@ -261,11 +274,8 @@ window.onload = function ()
         console.log("HIT");
         aud_wallHit.play();
         clearInterval(interval_id);
-
     }
     function selfBite() {
-
-
         aud_selfBite.play();
         console.log("HIT");
         clearInterval(interval_id);
