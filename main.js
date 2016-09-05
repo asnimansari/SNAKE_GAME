@@ -15,6 +15,8 @@ window.onload = function ()
     var fence = new Array(8);
 
     var aud_btnPress = new Audio('audio/btn_press.mp3');
+    var aud_foodCaptured = new Audio('audio/food_captured.mp3');
+    var aud_wallHit = new Audio('audio/wall_hit.mp3');
     for(i = 0;i<fence.length;i++){
         fence[i] = new Array();
     }
@@ -179,6 +181,7 @@ window.onload = function ()
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
         if (snake_head.x === rndX && snake_head.y === rndY) {
             console.log("Passed Food");
+            aud_foodCaptured.play();
             snakeshift();
             score = score + 1;
             foodMaker();
@@ -195,12 +198,15 @@ window.onload = function ()
         }
         for(var i = 0;i<snake.length - 2;i++){
             if (snake_head.x === snake[i].x && snake_head.y === snake[i].y){
-                console.log("HIT");
-                clearInterval(interval_id);
+
+                wallHit();
             }
         }
         for(var i = 0;i< fence[GAME_LEVEL].length;i++){
             if (snake_head.x === fence[GAME_LEVEL][i].x && snake_head.y === fence[GAME_LEVEL][i].y){
+
+
+                aud_wallHit.play();
                 console.log("HIT");
                 clearInterval(interval_id);
             }
@@ -242,7 +248,6 @@ window.onload = function ()
                 rndX = Math.round(Math.random() * 38)*20;
                 rndY = Math.round(Math.random() * 38)*20;
                 i = 0;
-
                 console.log("IN FENSE");
             }
             console.log("LOOPING");
@@ -254,6 +259,12 @@ window.onload = function ()
         ctx.fillRect(rndX + 6,rndY + 12,6,6);
         ctx.fillRect(rndX,rndY + 6,6,6);
         ctx.fillRect(rndX + 12,rndY + 6,6,6);
+    }
+    function wallHit() {
+        console.log("HIT");
+        aud_wallHit.play();
+        clearInterval(interval_id);
+
     }
 
 }
