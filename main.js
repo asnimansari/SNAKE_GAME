@@ -117,90 +117,57 @@ window.onload = function ()
     // END OF FENCE GENERATION SECTION
 
     //CO-ORIDATES FOR SHOWING SNAKE game_over
-
     var game_over = new Array();
-    game_over.push(
-        // G
-        {x:40,y:20},
-        {x:60,y:20},
-        {x:80,y:20},
-        {x:100,y:20},
-        {x:120,y:20},
-        {x:40,y:260},
-        {x:60,y:260},
-        {x:80,y:260},
-        {x:100,y:260},
-        {x:120,y:260},
-        {x:20,y:40},
-        {x:20,y:60},
-        {x:20,y:80},
-        {x:20,y:100},
-        {x:20,y:120},
-        {x:20,y:140},
-        {x:20,y:160},
-        {x:20,y:180},
-        {x:20,y:200},
-        {x:20,y:220},
-        {x:20,y:240},
-        {x:140,y:180},
-        {x:140,y:200},
-        {x:140,y:220},
-        {x:140,y:240},
-        {x:40,y:160},
-        {x:60,y:160},
-        {x:80,y:160},
-        {x:100,y:160},
-        {x:120,y:160});
-    //A
+
+    //GENRERATE 5 PIX HORIZONTALS
     for (var i = 0;i<5;i++){
-        game_over.push({x:200 + i *20,y:20},{x:200 + i * 20,y:140});
+        game_over.push({x:200 + i *20,y:20},{x:200 + i * 20,y:140},
+            {x:40 + i *20,y:360},
+            {x:40 + i * 20,y:600},
+            {x:40 + i* 20,y: 20},
+            {x:40 + i* 20,y: 260},
+            {x:40 + i* 20,y: 140},
+            {x:140,y:160 + i * 20});
     }
+
+    //GENRERATE 12 PIX HORIZONTALS
     for (var i = 0;i<12;i++){
         game_over.push({x:180,y: i * 20 + 40 },{x:300,y:i * 20 + 40});
     }
-    //M
-    for(var i =0 ; i< 13;i++){
-        game_over.push({x:340,y: i * 20 + 20 },{x:500,y:i * 20 + 20},{x:340 + i*6,y: i * 20 + 20},{x:500 - i*6,y: i * 20 + 20});
+
+    //GENRERATE 11 PIX HORIZONTALS
+    for (var i = 0;i<11;i++){
+        game_over.push({x:20,y: i * 20 + 40 });
     }
-    //E
+
+    //13 pixel vertials
     for(var i =0 ; i< 13;i++){
-        game_over.push({x:540,y:20 + i * 20});
+        game_over.push({x:340,y: i * 20 + 20 },
+            {x:500,y:i * 20 + 20},
+            {x:340 + i*6,y: i * 20 + 20},
+            {x:500 - i*6,y: i * 20 + 20},
+            {x:540,y:20 + i * 20},
+            {x:20,y:360 + i * 20},
+            {x:140 ,y: 360 + i * 20},
+            {x:180 + i*6,y: 360 + i * 20},
+            {x:340 - i*6,y:360 + i * 20},
+            {x:380,y:360 + i * 20},
+            {x:520,y: 360 + i * 20});
     }
+    //GERERATE 6 PIXESLS
     for(var i =0 ; i< 6;i++){
-        game_over.push({x:560 + i * 20,y:20 },{x:560 + i * 20,y:140 },{x:560 + i * 20,y:260 });
+        game_over.push({x:560 + i * 20,y:20 },
+            {x:560 + i * 20,y:140 },
+            {x:560 + i * 20,y:260 },
+            {x:380 + i * 20,y:360},
+            {x:380 + i * 20,y:480 },
+            {x:380 + i * 20,y:600 },
+            {x:520 + i * 20,y: 360},
+            {x:520 + i * 20,y: 460},
+            {x:620,y:360 + i*20},
+            {x:520 + i * 20,y: 480 + i * 20},
+            {x: 620,y: 600});
     }
-
-    //O
-    for (var i = 0;i<5;i++){
-        game_over.push({x:40 + i *20,y:360},{x:40 + i * 20,y:600});
-    }
-    for (var i = 0;i<13;i++){
-        game_over.push({x:20,y:360 + i * 20} ,{x:140 ,y: 360 + i * 20});
-    }
-    //V
-    for(var i =0 ; i< 13;i++){
-        game_over.push({x:180 + i*6,y: 360 + i * 20},{x:340 - i*6,y:360 + i * 20});
-    }
-    //E2
-    for(var i =0 ; i< 13;i++) {
-        game_over.push({x:380,y:360 + i * 20});
-    }
-    for(var i =0 ; i< 6;i++){
-        game_over.push({x:380 + i * 20,y: 360},{x:380 + i * 20,y:500 },{x:380 + i * 20,y:600 });
-    }
-    //R
-    for(var i = 0;i< 6 ;i++){
-        game_over.push({x:520 + i * 20,y: 360},{x:520 + i * 20,y: 460},{x:620,y:360 + i*20});
-
-    }
-    for(var i = 0;i< 6 ;i++){
-        game_over.push({x:520 + i * 20,y: 480 + i * 20});
-    }
-    game_over.push({x: 620,y: 600});
-    for(var i = 0;i< 13 ;i++){
-        game_over.push({x:520,y: 360 + i * 20});
-    }
-
 
     // SNAKEDIRECTION DICTIONARY CREATIION
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
