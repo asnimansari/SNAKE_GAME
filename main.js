@@ -116,6 +116,92 @@ window.onload = function ()
     }
     // END OF FENCE GENERATION SECTION
 
+    //CO-ORIDATES FOR SHOWING SNAKE game_over
+
+    var game_over = new Array();
+    game_over.push(
+        // G
+        {x:40,y:20},
+        {x:60,y:20},
+        {x:80,y:20},
+        {x:100,y:20},
+        {x:120,y:20},
+        {x:40,y:260},
+        {x:60,y:260},
+        {x:80,y:260},
+        {x:100,y:260},
+        {x:120,y:260},
+        {x:20,y:40},
+        {x:20,y:60},
+        {x:20,y:80},
+        {x:20,y:100},
+        {x:20,y:120},
+        {x:20,y:140},
+        {x:20,y:160},
+        {x:20,y:180},
+        {x:20,y:200},
+        {x:20,y:220},
+        {x:20,y:240},
+        {x:140,y:180},
+        {x:140,y:200},
+        {x:140,y:220},
+        {x:140,y:240},
+        {x:40,y:160},
+        {x:60,y:160},
+        {x:80,y:160},
+        {x:100,y:160},
+        {x:120,y:160});
+    //A
+    for (var i = 0;i<5;i++){
+        game_over.push({x:200 + i *20,y:20},{x:200 + i * 20,y:140});
+    }
+    for (var i = 0;i<12;i++){
+        game_over.push({x:180,y: i * 20 + 40 },{x:300,y:i * 20 + 40});
+    }
+    //M
+    for(var i =0 ; i< 13;i++){
+        game_over.push({x:340,y: i * 20 + 20 },{x:500,y:i * 20 + 20},{x:340 + i*6,y: i * 20 + 20},{x:500 - i*6,y: i * 20 + 20});
+    }
+    //E
+    for(var i =0 ; i< 13;i++){
+        game_over.push({x:540,y:20 + i * 20});
+    }
+    for(var i =0 ; i< 6;i++){
+        game_over.push({x:560 + i * 20,y:20 },{x:560 + i * 20,y:140 },{x:560 + i * 20,y:260 });
+    }
+
+    //O
+    for (var i = 0;i<5;i++){
+        game_over.push({x:40 + i *20,y:360},{x:40 + i * 20,y:600});
+    }
+    for (var i = 0;i<13;i++){
+        game_over.push({x:20,y:360 + i * 20} ,{x:140 ,y: 360 + i * 20});
+    }
+    //V
+    for(var i =0 ; i< 13;i++){
+        game_over.push({x:180 + i*6,y: 360 + i * 20},{x:340 - i*6,y:360 + i * 20});
+    }
+    //E2
+    for(var i =0 ; i< 13;i++) {
+        game_over.push({x:380,y:360 + i * 20});
+    }
+    for(var i =0 ; i< 6;i++){
+        game_over.push({x:380 + i * 20,y: 360},{x:380 + i * 20,y:500 },{x:380 + i * 20,y:600 });
+    }
+    //R
+    for(var i = 0;i< 6 ;i++){
+        game_over.push({x:520 + i * 20,y: 360},{x:520 + i * 20,y: 460},{x:620,y:360 + i*20});
+
+    }
+    for(var i = 0;i< 6 ;i++){
+        game_over.push({x:520 + i * 20,y: 480 + i * 20});
+    }
+    game_over.push({x: 620,y: 600});
+    for(var i = 0;i< 13 ;i++){
+        game_over.push({x:520,y: 360 + i * 20});
+    }
+
+
     // SNAKEDIRECTION DICTIONARY CREATIION
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
     // SCORE INITIALISATION
@@ -225,7 +311,8 @@ window.onload = function ()
             ctx.fillRect(fence[GAME_LEVEL][i].x,fence[GAME_LEVEL][i].y,19,19);
         }
     }
-    interval_id = setInterval(animate, REFRESH_DELAY);
+    showgame_overScreen();
+    // interval_id = setInterval(animate, REFRESH_DELAY);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         last_pos = snake[snake.length - 1];
@@ -275,10 +362,19 @@ window.onload = function ()
         aud_wallHit.play();
         clearInterval(interval_id);
     }
+    
     function selfBite() {
         aud_selfBite.play();
         console.log("HIT");
         clearInterval(interval_id);
+
+    }
+    function showgame_overScreen() {
+        ctx.clearRect(0, 0, 959, 639);
+        ctx.fillStyle = "#384619";
+        for(i = 0; i< game_over.length;i++){
+            ctx.fillRect(game_over[i].x,game_over[i].y,19,19);
+        }
 
     }
 
