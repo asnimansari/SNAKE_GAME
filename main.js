@@ -285,6 +285,7 @@ window.onload = function ()
     }
     // showgame_overScreen();
     interval_id = setInterval(animate, REFRESH_DELAY);
+    // interval_id = requestAnimationFrame(animate);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         last_pos = snake[snake.length - 1];
