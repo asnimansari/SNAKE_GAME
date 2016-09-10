@@ -169,6 +169,11 @@ window.onload = function ()
             {x: 620,y: 600});
     }
 
+    //SHIFT POSTION OF GAME OVER
+    for (var i = 0;i<game_over.length;i++){
+        game_over[i].x += 120;
+    }
+
     // SNAKEDIRECTION DICTIONARY CREATIION
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
     // SCORE INITIALISATION
@@ -253,7 +258,7 @@ window.onload = function ()
             score = score + 1;
             foodMaker();
             if(score%2 == 0){
-                snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}, {x: 100, y: 180}];
+                snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}];
                 direction = SnakeDirections.RIGHT;
                 GAME_LEVEL = GAME_LEVEL + 1;
                 foodMaker();
@@ -278,8 +283,8 @@ window.onload = function ()
             ctx.fillRect(fence[GAME_LEVEL][i].x,fence[GAME_LEVEL][i].y,19,19);
         }
     }
-    showgame_overScreen();
-    // interval_id = setInterval(animate, REFRESH_DELAY);
+    // showgame_overScreen();
+    interval_id = setInterval(animate, REFRESH_DELAY);
     function snakeshift(){
         last_pos = snake[snake.length - 1];
         last_pos = snake[snake.length - 1];
@@ -327,12 +332,15 @@ window.onload = function ()
     function wallHit() {
         console.log("HIT");
         aud_wallHit.play();
+        setTimeout(showgame_overScreen,2000);
+        // showgame_overScreen();
         clearInterval(interval_id);
     }
     
     function selfBite() {
         aud_selfBite.play();
         console.log("HIT");
+        setTimeout(showgame_overScreen,2000);
         clearInterval(interval_id);
 
     }
@@ -342,7 +350,5 @@ window.onload = function ()
         for(i = 0; i< game_over.length;i++){
             ctx.fillRect(game_over[i].x,game_over[i].y,19,19);
         }
-
     }
-
 }
