@@ -12,7 +12,10 @@ window.onload = function () {
     var y = canvas.height - 30;
     var dx = 2;
     var dy = -2;
-
+    var paddleHeight = 10;
+    var paddleWidth = 75;
+    var paddleX = (canvas.width-paddleWidth)/2;
+    //FUNCTION TO DRAW BALL
     function drawBall() {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -24,15 +27,14 @@ window.onload = function () {
 
     function draw() {
         ctx.clearRect(0,0,canvas.width,canvas.height);
-        console.log("FDREA");
         drawBall();
+        //DETECT AND REVERSE THE DIRECTION IF HIT OCCURED
         if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
             dx = -dx;
         }
         if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
             dy = -dy;
         }
-
         x += dx;
         y += dy;
 
