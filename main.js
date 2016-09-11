@@ -15,6 +15,7 @@ window.onload = function ()
     var rndX = 0, rndY = 0;
     var REFRESH_DELAY = 150;
     var GAME_LEVEL = 0;
+
     var fence = new Array(8);
 
     //AUDIO INITIALISATION FOR THE GAME
@@ -176,8 +177,9 @@ window.onload = function ()
 
     // SNAKEDIRECTION DICTIONARY CREATIION
     var SnakeDirections = {       UP: 4,        DOWN: 2,        LEFT: 3,        RIGHT: 1    };
-    // SCORE INITIALISATION
+    // SCORE  AND DISPLAY LEVEL INITIALISATION
     score = 0;
+    level = 1;
     // KEYPRESS AND EXECUTION FLAG( USED TO PREVENT MUTLIPLE STROKES WHICH LEADS TO SNAKE BIT )
     var key_executed = true;
 
@@ -246,8 +248,8 @@ window.onload = function ()
         ctx1.background = "#000000";
         ctx1.font = "20px sans-serif";
         ctx1.clearRect(0,0,959,100);
-        ctx1.fillText("SCORE BOARD :" + score, canvas1.width/2, 20);
-        ctx1.fillText("SCORE :" + score, 60, 100);
+        ctx1.fillText("SCORE BOARD :" + score, 15, 40);
+        ctx1.fillText("LEVEL :" + level , 15, 80);
         snakeshift();
         key_executed = true
         var snake_head = {x: snake[snake.length - 1].x, y: snake[snake.length - 1].y};
@@ -257,14 +259,17 @@ window.onload = function ()
             snakeshift();
             score = score + 1;
             foodMaker();
-            if(score%2 == 0){
+            if(score%1 == 0){
                 snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}];
                 direction = SnakeDirections.RIGHT;
                 GAME_LEVEL = GAME_LEVEL + 1;
                 foodMaker();
                 if(GAME_LEVEL === 8){
                     GAME_LEVEL = 0;
-                    REFRESH_DELAY = REFRESH_DELAY - 10;
+                    REFRESH_DELAY = REFRESH_DELAY - 20;
+                    clearInterval(interval_id);
+                    interval_id = setInterval(animate,REFRESH_DELAY);
+                    level = level + 1;
                 }
             }
         }
@@ -312,7 +317,15 @@ window.onload = function ()
             rndX = Math.round(Math.random() * 38)*20;
             rndY = Math.round(Math.random() * 38)*20;
         }
-        var total_length = fence[GAME_LEVEL].length;
+
+        try {
+            var total_length = fence[GAME_LEVEL].length ||0;
+
+        }
+        catch(err) {
+            var total_length = 0;
+
+        }
         for (i = 0;i<total_length;i++){
             if (fence[GAME_LEVEL][i].x === rndX && fence[GAME_LEVEL][i].y === rndY){
                 rndX = Math.round(Math.random() * 38)*20;
