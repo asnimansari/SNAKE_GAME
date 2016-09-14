@@ -259,7 +259,7 @@ window.onload = function ()
             snakeshift();
             score = score + 1;
             foodMaker();
-            if(score%1 == 0){
+            if(score%10 == 0){
                 snake = [{x: 40, y: 180}, {x: 60, y: 180}, {x: 80, y: 180}];
                 direction = SnakeDirections.RIGHT;
                 GAME_LEVEL = GAME_LEVEL + 1;
